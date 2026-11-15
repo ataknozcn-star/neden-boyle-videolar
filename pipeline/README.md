@@ -5,13 +5,13 @@ Dikey (1080×1920, 30 fps), 35–55 saniyelik, Türkçe seslendirmeli ve 8-bit m
 ## Adımlar
 1. `bash pipeline/setup.sh` — paketler + Türkçe ses modeli (oturum başına bir kez).
 2. `konular.md` dosyasına bak; **daha önce işlenmemiş** bir konu seç.
-3. `pipeline/episodes/sogan.py` dosyasını örnek alarak `pipeline/episodes/<slug>.py` yaz:
+3. `pipeline/episodes/gokyuzu.py` (kısa, kalıplı örnek; **bunu tercih et**) ya da `sogan.py` (tamamen elle çizilmiş örnek) dosyasını örnek alarak `pipeline/episodes/<slug>.py` yaz. Kalıplar: `title_scene`, `reason_scene`, `cards_scene`, `end_scene`; bölüm başına yalnızca `hero(c, t)` ve dört `iN(c, t, d)` çizimi yazılır:
    - `SLUG`, `NARRATION` (sahne başına bir metin; 7 sahne: giriş, 4 neden, ipuçları/özet, kapanış).
    - Her sahne için `def sN(c, t, d)` çizim fonksiyonu (`t` sahne içi saniye, `d` sahne süresi).
    - İstersen `nb.THEME["bg"]` ve `nb.THEME["accent"]` ile renk temasını konuya göre değiştir.
    - Sonda: `nb.main(SLUG, NARRATION, [s0, ..., s6])`.
 4. `cd pipeline && python3 episodes/<slug>.py` — sahne sürelerini yazdırır (süreler seslendirmeden gelir).
-5. `python3 episodes/<slug>.py preview 0:3.5 1:4.0 ...` — her sahnenin en dolu anından tam boy kare çizer,
+5. `python3 episodes/<slug>.py preview` (argümansız: her sahnenin sonuna yakın birer kare) ya da `preview 0:3.5 1:4.0 ...` — her sahnenin en dolu anından tam boy kare çizer,
    `build/<slug>/sheet.jpg` üretir. **Bu görsele mutlaka bak**: taşan/çakışan yazı, kesilen etiket, boş sahne olmasın.
 6. `python3 episodes/<slug>.py build` — `build/<slug>/<slug>.mp4` (tek tam render; ~3 dk).
 7. Videoyu `videolar/YYYY-AA-GG-<slug>.mp4` olarak kopyala, `konular.md`ye satır ekle, commit + push (main).

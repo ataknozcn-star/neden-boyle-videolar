@@ -70,7 +70,7 @@ def progress(c, idx, frac):
 def header(c, label, title, t):
     a = ss(0.0, 0.45, t); dy = (1 - eout(t / 0.5)) * 24
     text(c, label, W / 2, 222 + dy, 30, THEME["accent"], a, "Bold", spacing=7)
-    text(c, title, W / 2, 312 + dy, 70, CREAM, a)
+    text(c, title, W / 2, 312 + dy, fit(title, 70, 960), THEME["text"], a)
 
 def caption(c, lines, t, t0=0.6, y=1270):
     for i, ln in enumerate(lines):
@@ -141,6 +141,93 @@ def shield(c, x, y, s, a=1.0):
     ck = skia.Path(); ck.moveTo(-0.38, 0.05); ck.lineTo(-0.1, 0.36); ck.lineTo(0.42, -0.25)
     q = stroke("#2b1739", 0.17, a); c.drawPath(ck, q); c.restore()
 
+
+
+# ---------- kısa yardımcılar ----------
+def fit(s, size, maxw, w="Bold"):
+    tw = skia.Font(TF[w], size).measureText(s); return size if tw <= maxw else size * maxw / tw
+def mixcol(h1, h2, k):
+    k = clamp(k); a = [int(h1.lstrip("#")[i:i + 2], 16) for i in (0, 2, 4)]; b = [int(h2.lstrip("#")[i:i + 2], 16) for i in (0, 2, 4)]
+    return "#" + "".join(f"{int(lerp(x, y, k)):02x}" for x, y in zip(a, b))
+def circ(c, x, y, r, color, a=1.0, sw=0):
+    if a > 0.004 and r > 0: c.drawCircle(x, y, r, stroke(color, sw, a) if sw else fill(color, a))
+def line(c, x0, y0, x1, y1, color, w=6, a=1.0):
+    if a > 0.004: c.drawLine(x0, y0, x1, y1, stroke(color, w, a))
+def rrect(c, x, y, w, h, r, color, a=1.0, sw=0):
+    if a > 0.004: c.drawRoundRect(skia.Rect.MakeXYWH(x, y, w, h), r, r, stroke(color, sw, a) if sw else fill(color, a))
+def poly(c, pts, color, a=1.0, sw=0, close=True):
+    p = skia.Path(); p.moveTo(*pts[0])
+    for q in pts[1:]: p.lineTo(*q)
+    if close: p.close()
+    c.drawPath(p, stroke(color, sw, a) if sw else fill(color, a))
+def arrow(c, x0, y0, x1, y1, color, w=6, a=1.0, head=22):
+    if a <= 0.01: return
+    ang = math.atan2(y1 - y0, x1 - x0); line(c, x0, y0, x1, y1, color, w, a)
+    for s_ in (-1, 1): line(c, x1, y1, x1 - head * math.cos(ang + s_ * 0.5), y1 - head * math.sin(ang + s_ * 0.5), color, w, a)
+def tag(c, s, x, y, color=None, a=1.0, size=34, align="l", w="Medium"):
+    text(c, s, x, y, size, color or THEME["text"], a, w, align)
+def pop(t, t0, dur=0.45): return eback((t - t0) / dur) if t > t0 else 0.0
+def sun(c, x, y, r, t, a=1.0, color=GOLD):
+    for k in range(12):
+        ang = k * math.pi / 6 + t * 0.3
+        line(c, x + math.cos(ang) * r * 1.25, y + math.sin(ang) * r * 1.25, x + math.cos(ang) * r * 1.6, y + math.sin(ang) * r * 1.6, color, max(4, r * 0.11), a)
+    circ(c, x, y, r, color, a)
+def cloud(c, x, y, s=1.0, a=1.0, color="#ffffff"):
+    for dx, dy, r in ((-70, 10, 48), (-20, -25, 62), (45, -10, 55), (90, 15, 40)): circ(c, x + dx * s, y + dy * s, r * s, color, a)
+    rrect(c, x - 112 * s, y + 5 * s, 240 * s, 50 * s, 25 * s, color, a)
+def flames(c, x, y, n, t, a=1.0, gap=38):
+    for k in range(n):
+        h = 40 + 14 * math.sin(t * 9 + k * 1.7); xx = x + (k - (n - 1) / 2) * gap
+        for wd, hh, cl in ((17, h * 1.6, "#ff8a3c"), (9, h * 0.9, GOLD)):
+            p = skia.Path(); p.moveTo(xx - wd, y); p.quadTo(xx, y - hh * 1.3, xx + wd, y); p.close(); c.drawPath(p, fill(cl, a))
+
+# ---------- hazır sahne kalıpları ----------
+def title_scene(l1, l2, sub, hero):
+    """Giriş: iki satır başlık + ortada hero(c, t) çizimi ((540, 900) çevresine çizilir) + alt yazı."""
+    def s(c, t, d):
+        a1 = ss(0.05, 0.5, t); a2 = ss(0.35, 0.85, t)
+        text(c, l1, W / 2, 330 + (1 - a1) * 20, fit(l1, 80, 960), THEME["text"], a1)
+        text(c, l2, W / 2, 452 + (1 - a2) * 20, fit(l2, 108, 980), THEME["accent"], a2)
+        k = pop(t, 0.3, 0.7)
+        if k > 0:
+            c.save(); c.translate(W / 2, 900); c.scale(k, k); c.translate(-W / 2, -900); hero(c, t); c.restore()
+        text(c, sub, W / 2, 1340, 42, THEME["text"], 0.8 * ss(2.3, 2.9, t), "Medium")
+    return s
+def reason_scene(label, title, cap, illus, cap_t=0.9):
+    """Etiket + başlık + illus(c, t, d) çizimi (x 80–1000, y 470–1150) + iki satır açıklama."""
+    def s(c, t, d):
+        header(c, label, title, t)
+        c.saveLayerAlpha(None, int(255 * ss(0.2, 0.7, t))); illus(c, t, d); c.restore()
+        caption(c, cap, t, cap_t, 1262)
+    return s
+def cards_scene(label, title, items, ok=True):
+    """Üç maddelik kart listesi: items = [(başlık, alt yazı), ...]."""
+    def s(c, t, d):
+        header(c, label, title, t); n = len(items); step = (d - 3.8) / n
+        for i, (a_, b_) in enumerate(items):
+            t0 = 1.5 + i * step; k = eout((t - t0) / 0.45) if t > t0 else 0
+            if k <= 0: continue
+            y = 560 + i * 200; x = 90 + (1 - k) * 60
+            c.saveLayerAlpha(None, int(255 * k))
+            rrect(c, x, y, 900, 168, 34, THEME["text"], 0.09); rrect(c, x, y, 900, 168, 34, THEME["text"], 0.18, sw=2)
+            check(c, x + 92, y + 84, 42 * eback((t - t0 - 0.1) / 0.4), ok=ok)
+            text(c, a_, x + 170, y + 78, fit(a_, 50, 700), THEME["text"], 1, "Bold", align="l")
+            text(c, b_, x + 170, y + 128, fit(b_, 33, 700, "Regular"), THEME["text"], 0.7, "Regular", align="l")
+            c.restore()
+    return s
+def end_scene(l1, l2, hero):
+    """Kapanış: iki satır söz + hero + 'Neden böyle? Artık biliyorsunuz.' (seslendirmenin son cümlesiyle eş zamanlı)."""
+    def s(c, t, d):
+        a1 = ss(0.1, 0.55, t); a2 = ss(1.0, 1.5, t)
+        text(c, l1, W / 2, 320 + (1 - a1) * 20, fit(l1, 70, 960), THEME["text"], a1)
+        text(c, l2, W / 2, 420 + (1 - a2) * 20, fit(l2, 84, 980), THEME["accent"], a2)
+        k = pop(t, 0.2, 0.6)
+        if k > 0:
+            c.save(); c.translate(W / 2, 830); c.scale(0.8 * k, 0.8 * k); c.translate(-W / 2, -900); hero(c, t); c.restore()
+        t3 = max(2.4, d - 3.7); a3 = ss(t3, t3 + 0.5, t); a4 = ss(t3 + 1.1, t3 + 1.6, t)
+        text(c, "Neden böyle?", W / 2, 1290 + (1 - a3) * 20, 96, GOLD, a3)
+        text(c, "Artık biliyorsunuz.", W / 2, 1372 + (1 - a4) * 14, 46, THEME["text"], 0.9 * a4, "Medium")
+    return s
 
 # ---------- seslendirme ----------
 def tts(work, narration, tails=None, length_scale=0.97):
@@ -284,5 +371,7 @@ def main(slug, narration, scenes, tails=None):
     work = os.path.join(ROOT, "build", slug); info = tts(work, narration, tails)
     for s in info: print(s["i"], "başlangıç", s["scene_start"], "süre", s["scene_dur"], "|", s["text"])
     cmd = sys.argv[1] if len(sys.argv) > 1 else "info"
-    if cmd == "preview": preview(work, scenes, info, sys.argv[2:])
+    if cmd == "preview":
+        specs = sys.argv[2:] or [f"{x['i']}:{round(x['scene_dur'] - (0.9 if x['i'] == len(info) - 1 else 0.6), 2)}" for x in info]
+        preview(work, scenes, info, specs)
     elif cmd == "build": build(slug, scenes, info, work)
