@@ -12,3 +12,4 @@
 | 2026-11-15 | Mısır neden patlar? | videolar/2026-11-15-misir-neden-patlar.mp4 | Instagram |
 | 2026-11-15 | Yapraklar sonbaharda neden sararır? | videolar/2026-11-15-yapraklar-neden-sararir.mp4 | Instagram |
 | 2026-11-15 | Gökkuşağı nasıl oluşur? | videolar/2026-11-15-gokkusagi-nasil-olusur.mp4 | Instagram |
+| 2026-11-15 | Deniz neden tuzlu? | videolar/2026-11-15-deniz-neden-tuzlu.mp4 | Instagram |
