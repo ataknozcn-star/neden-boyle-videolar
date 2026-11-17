@@ -15,3 +15,4 @@
 | 2026-11-15 | Deniz neden tuzlu? | videolar/2026-11-15-deniz-neden-tuzlu.mp4 | Instagram |
 | 2026-11-16 | Kesilen elma neden kararır? | videolar/2026-11-16-elma-neden-kararir.mp4 | Instagram |
 | 2026-11-16 | Süt neden taşar? | videolar/2026-11-16-sut-neden-tasar.mp4 | Instagram |
+| 2026-11-17 | Banyo aynası neden buğulanır? | videolar/2026-11-17-ayna-neden-bugulanir.mp4 | Instagram |
