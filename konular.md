@@ -18,3 +18,4 @@
 | 2026-11-17 | Banyo aynası neden buğulanır? | videolar/2026-11-17-ayna-neden-bugulanir.mp4 | Instagram |
 | 2026-11-17 | Kar neden beyaz? | videolar/2026-11-17-kar-neden-beyaz.mp4 | Instagram |
 | 2026-11-18 | Ay neden şekil değiştirir? | videolar/2026-11-18-ay-neden-sekil-degistirir.mp4 | Instagram |
+| 2026-11-18 | Mikrodalga yemeği nasıl ısıtır? | videolar/2026-11-18-mikrodalga-nasil-isitir.mp4 | Instagram |
