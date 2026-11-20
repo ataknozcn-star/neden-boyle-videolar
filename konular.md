@@ -21,3 +21,4 @@
 | 2026-11-18 | Mikrodalga yemeği nasıl ısıtır? | videolar/2026-11-18-mikrodalga-nasil-isitir.mp4 | Instagram |
 | 2026-11-19 | Yumurta pişince neden katılaşır? | videolar/2026-11-19-yumurta-neden-katilasir.mp4 | Instagram |
 | 2026-11-19 | Gazlı içecek neden köpürür? | videolar/2026-11-19-gazli-icecek-neden-kopurur.mp4 | Instagram |
+| 2026-11-20 | Kazak neden çıtırdar? | videolar/2026-11-20-kazak-neden-citirdar.mp4 | Instagram |
