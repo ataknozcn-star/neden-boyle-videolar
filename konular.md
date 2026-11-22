@@ -26,3 +26,4 @@
 | 2026-11-21 | Bal neden şekerlenir? | videolar/2026-11-21-bal-neden-sekerlenir.mp4 | Instagram |
 | 2026-11-21 | Soğukta nefesimiz neden görünür? | videolar/2026-11-21-nefes-neden-gorunur.mp4 | Instagram |
 | 2026-11-22 | Yüksek dağda su neden erken kaynar? | videolar/2026-11-22-dagda-su-neden-erken-kaynar.mp4 | Instagram |
+| 2026-11-22 | Tuz buzu neden eritir? | videolar/2026-11-22-tuz-buzu-neden-eritir.mp4 | Instagram |
