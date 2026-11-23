@@ -28,3 +28,4 @@
 | 2026-11-22 | Yüksek dağda su neden erken kaynar? | videolar/2026-11-22-dagda-su-neden-erken-kaynar.mp4 | Instagram |
 | 2026-11-22 | Tuz buzu neden eritir? | videolar/2026-11-22-tuz-buzu-neden-eritir.mp4 | Instagram |
 | 2026-11-23 | Yıldızlar neden göz kırpar? | videolar/2026-11-23-yildizlar-neden-goz-kirpar.mp4 | Instagram |
+| 2026-11-23 | Mum nasıl yanar? | videolar/2026-11-23-mum-nasil-yanar.mp4 | Instagram |
