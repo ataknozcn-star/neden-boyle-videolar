@@ -31,3 +31,4 @@
 | 2026-11-23 | Mum nasıl yanar? | videolar/2026-11-23-mum-nasil-yanar.mp4 | Instagram |
 | 2026-11-24 | Metal neden tahtadan daha soğuk hissettirir? | videolar/2026-11-24-metal-neden-soguk-hissettirir.mp4 | Instagram |
 | 2026-11-24 | Yağmurdan sonra toprak neden kokar? | videolar/2026-11-24-yagmur-kokusu.mp4 | Instagram |
+| 2026-11-25 | Kızarmış ekmek neden kahverengi olur? | videolar/2026-11-25-ekmek-neden-kizarir.mp4 | Instagram |
