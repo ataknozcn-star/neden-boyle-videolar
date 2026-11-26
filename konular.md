@@ -33,3 +33,4 @@
 | 2026-11-24 | Yağmurdan sonra toprak neden kokar? | videolar/2026-11-24-yagmur-kokusu.mp4 | Instagram |
 | 2026-11-25 | Kızarmış ekmek neden kahverengi olur? | videolar/2026-11-25-ekmek-neden-kizarir.mp4 | Instagram |
 | 2026-11-25 | Kuru üzüm suda neden şişer? | videolar/2026-11-25-kuru-uzum-neden-siser.mp4 | Instagram |
+| 2026-11-26 | Sabun köpüğü neden yuvarlak? | videolar/2026-11-26-sabun-kopugu-neden-yuvarlak.mp4 | Instagram |
