@@ -36,3 +36,4 @@
 | 2026-11-26 | Sabun köpüğü neden yuvarlak? | videolar/2026-11-26-sabun-kopugu-neden-yuvarlak.mp4 | Instagram |
 | 2026-11-26 | Hamur neden kabarır? | videolar/2026-11-26-hamur-neden-kabarir.mp4 | Instagram |
 | 2026-11-27 | Bulutlar neden düşmez? | videolar/2026-11-27-bulutlar-neden-dusmez.mp4 | Instagram |
+| 2026-11-27 | Kuşlar elektrik telinde neden çarpılmaz? | videolar/2026-11-27-kuslar-neden-carpilmaz.mp4 | Instagram |
